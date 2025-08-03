@@ -1,0 +1,227 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* 导入字体 */
+@import url('https://fonts.googleapis.com/css2?family=Source+Han+Sans+CN:wght@300;400;500;700&display=swap');
+
+:root {
+  font-family: 'Source Han Sans CN', 'Courier New', system-ui, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: dark;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #2B2E38;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* 全局样式重置 */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  background-color: #2B2E38;
+  color: white;
+  overflow-x: hidden;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+/* 链接样式 */
+a {
+  font-weight: 500;
+  color: #FF6600;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+a:hover {
+  color: #ff8533;
+}
+
+/* 按钮样式 */
+button {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: #FF6600;
+  color: white;
+  cursor: pointer;
+  transition: all 0.25s;
+}
+
+button:hover {
+  background-color: #e55a00;
+  transform: translateY(-2px);
+}
+
+button:focus,
+button:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
+}
+
+/* 滚动条样式 */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #2B2E38;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #FF6600;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #e55a00;
+}
+
+/* 自定义动画 */
+@keyframes glow {
+  0%, 100% {
+    text-shadow: 0 0 5px #FF6600, 0 0 10px #FF6600, 0 0 15px #FF6600;
+  }
+  50% {
+    text-shadow: 0 0 10px #FF6600, 0 0 20px #FF6600, 0 0 30px #FF6600;
+  }
+}
+
+.glow-text {
+  animation: glow 2s ease-in-out infinite;
+}
+
+/* 像素风格边框 */
+.pixel-border {
+  border: 2px solid #FF6600;
+  border-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="8" height="8"><rect width="8" height="8" fill="%23FF6600"/></svg>') 2;
+}
+
+/* 复古卡片样式 */
+.retro-card {
+  background: linear-gradient(135deg, #2B2E38 0%, #3A3F4A 100%);
+  border: 1px solid #FF6600;
+  box-shadow: 0 0 20px rgba(255, 102, 0, 0.3);
+  transition: all 0.3s ease;
+}
+
+.retro-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(255, 102, 0, 0.5);
+}
+
+/* 翻页效果 */
+.flip-card {
+  perspective: 1000px;
+}
+
+.flip-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: transform 0.8s;
+  transform-style: preserve-3d;
+}
+
+.flip-card.flipped .flip-card-inner {
+  transform: rotateY(180deg);
+}
+
+.flip-card-front, .flip-card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+.flip-card-back {
+  transform: rotateY(180deg);
+}
+
+/* 弹幕样式 */
+.danmaku {
+  position: absolute;
+  white-space: nowrap;
+  font-size: 14px;
+  color: white;
+  text-shadow: 1px 1px 2px black;
+  animation: danmaku-scroll 10s linear;
+  z-index: 100;
+}
+
+@keyframes danmaku-scroll {
+  from {
+    transform: translateX(100vw);
+  }
+  to {
+    transform: translateX(-100%);
+  }
+}
+
+/* 音频可视化 */
+.audio-visualizer {
+  display: flex;
+  align-items: end;
+  height: 60px;
+  gap: 2px;
+}
+
+.audio-bar {
+  width: 4px;
+  background: linear-gradient(to top, #FF6600, #FFD700);
+  animation: audio-bounce 0.5s ease-in-out infinite alternate;
+}
+
+@keyframes audio-bounce {
+  0% {
+    height: 10px;
+  }
+  100% {
+    height: 50px;
+  }
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+  .container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  
+  .text-responsive {
+    font-size: clamp(1rem, 4vw, 2rem);
+  }
+}
+
+/* 加载动画 */
+.loading-spinner {
+  border: 4px solid #2B2E38;
+  border-top: 4px solid #FF6600;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
